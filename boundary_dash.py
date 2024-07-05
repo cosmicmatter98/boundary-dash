@@ -1,4 +1,8 @@
-'''trying to make a game'''
+# Boundary-Dash
+# a game where you have to move a square, the protagonist - you, around
+# a green 'field' without hitting the red boundary walls.
+# if you hit the wall, it's GAME OVER
+
 
 from graphics import *
 
@@ -40,8 +44,8 @@ def main():
 	win.getMouse()
 	msg.setText("")
 	
-	'''moving player on mouse input'''
-	#character.move(0, -5)
+	'''score'''
+	score = 0
 	
 	'''asking player for input'''
 	msg.setText("Press arrow key to move")
@@ -53,12 +57,16 @@ def main():
 		'''moving player based on input'''
 		if key == "Up":
 			character.move(0, 1)
+			score += 1
 		elif key == "Down":
 			character.move(0, -1)
+			score += 1
 		elif key == "Left":
 			character.move(-1, 0)
+			score += 1
 		elif key == "Right":
 			character.move(1, 0)
+			score += 1
 		elif key == "Escape":
 			break
 		
@@ -67,18 +75,26 @@ def main():
 	
 	'''exit message'''
 	if trigger == 0:
+		score -= 1
 		msg.setText("COLLISION!\nGAME OVER\nClick to Exit")
+		
+		# displaying the score
+		msg_score = Text(Point(50, 50), score)
+		msg_score.setFace("helvetica")
+		msg_score.setSize(20)
+		msg_score.setStyle("bold")
+		msg_score.draw(win)
+		msg_score.setTextColor("white")
 		win.getMouse()
+		msg.undraw()
+		msg_score.undraw()
 		win.close()
 	else:
 		msg.setText("CHICKEN!\nClick to exit")
 		win.getMouse()
 		win.close()
 
-def check(msg, pos):
-	'''displays position of player character to player'''
-	#msg.setText(pos)
-	
+def check(msg, pos):	
 	'''bifurcating the position data into x and y components'''
 	pos_x = pos.getX()
 	pos_y = pos.getY()
