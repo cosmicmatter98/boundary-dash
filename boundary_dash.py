@@ -79,7 +79,7 @@ def main():
 		msg.setText("COLLISION!\nGAME OVER\nClick to Exit")
 		
 		# displaying the score
-		msg_score = Text(Point(50, 50), score)
+		msg_score = Text(Point(50, 50), f"Score is {score}")
 		msg_score.setFace("helvetica")
 		msg_score.setSize(20)
 		msg_score.setStyle("bold")
