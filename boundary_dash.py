@@ -11,22 +11,15 @@ def main():
 	win = GraphWin("Game", 400, 400)
 	
 	'''setting the background to green'''
-	win.setBackground("green")
+	win.setBackground("red")
 	
 	'''coordinate transformation'''
 	win.setCoords(0, 0, 100, 100)
-	
-	'''creating boundary wall'''
-	wall = Polygon(Point(0, 0), Point(1, 0), Point(1, 99), Point(99, 99), Point(99, 0), Point(100, 0), Point(100, 100), Point(0, 100))
-	wall.draw(win)
-	wall.setOutline("red")
-	wall.setFill("red")
-	
-	'''bottom boundary'''
-	bottom_bound = Rectangle(Point(1, 0), Point(99, 1))
-	bottom_bound.draw(win)
-	bottom_bound.setOutline("red")
-	bottom_bound.setFill("red")
+
+	'''creating the playing space'''
+	field = Rectangle(Point(1, 1), Point(99, 99))
+	field.draw(win)
+	field.setFill("green")
 	
 	'''creating the player object which is a rectangle'''
 	character = Rectangle(Point(49, 74), Point(51, 76))
@@ -78,7 +71,7 @@ def main():
 		score -= 1
 		msg.setText("COLLISION!\nGAME OVER\nClick to Exit")
 		
-		# displaying the score
+		''' displaying the score'''
 		msg_score = Text(Point(50, 50), f"Score is {score}")
 		msg_score.setFace("helvetica")
 		msg_score.setSize(20)
